@@ -1,0 +1,54 @@
+<!-- {% extends "base.html" %} -->
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>Enter Car Details</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="ChassisNumber">Chassis Number:</label>
+        <input type="text" id="ChassisNumber" name="ChassisNumber" required>
+        <br>
+
+        <label for="Manufacturer">Manufacturer:</label>
+        <input type="text" id="Manufacturer" name="Manufacturer" required>
+        <br>
+    
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required>
+        <br>
+
+        <label for="Year">Year:</label>
+        <input type="date" id="Year" name="Year" required>
+        <br>
+    
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" required>
+        <br>
+        
+        <label for="Distance">Distance:</label>
+        <input type="text" id="Distance" name="Distance" required>
+        <br>
+    
+        <!-- Uncomment this block if you need to upload images -->
+        <!-- 
+        <label for="images">Upload Images:</label>
+        <input type="file" id="images" name="images" multiple>
+        <br>
+        -->
+    
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if data %}
+        <h2>API Response</h2>
+        <pre>{{ data.result.metadata | safe }}</pre>
+    {% endif %}
+
+    <!-- Button to go to the search page -->
+    <!-- <a href="{% url 'search' %}" class="button">Go to Search</a> -->
+
+</body>
+</html>
