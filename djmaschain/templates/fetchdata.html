@@ -1,8 +1,27 @@
-<!-- {% extends "base.html" %} -->
+
 
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Car Data Form</title>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>Enter Car Details</h1>
@@ -15,11 +34,11 @@
         <label for="Manufacturer">Manufacturer:</label>
         <input type="text" id="Manufacturer" name="Manufacturer" required>
         <br>
-    
+
         <label for="model">Model:</label>
         <input type="text" id="model" name="model" required>
         <br>
-
+        
         <label for="Year">Year:</label>
         <input type="date" id="Year" name="Year" required>
         <br>
@@ -44,11 +63,8 @@
 
     {% if data %}
         <h2>API Response</h2>
-        <pre>{{ data.result.metadata | safe }}</pre>
+        <pre>{{ data | safe }}</pre>
     {% endif %}
-
-    <!-- Button to go to the search page -->
-    <!-- <a href="{% url 'search' %}" class="button">Go to Search</a> -->
 
 </body>
 </html>

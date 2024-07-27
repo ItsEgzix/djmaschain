@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Car Details</title>
+</head>
+<body>
+    <h1>Search for Car Details</h1>
+    <form method="POST" action="{% url 'search' %}">
+        {% csrf_token %}
+        <label for="search_chassis_number">Chassis Number:</label>
+        <input type="text" id="search_chassis_number" name="search_chassis_number" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <h1>Search Results</h1>
+    {% if results %}
+        <ul>
+        {% for result in results %}
+            <li>
+                <strong>Chassis Number:</strong> {{ result.metadata.0 }}<br>
+                <strong>Manufacturer:</strong> {{ result.metadata.1 }}<br>
+                <strong>Model:</strong> {{ result.metadata.2 }}<br>
+                <strong>Year:</strong> {{ result.metadata.3 }}<br>
+                <strong>Distance:</strong> {{ result.metadata.4 }}<br>
+                <strong>Color:</strong> {{ result.metadata.5 }}<br>
+                <strong>Transaction Hash:</strong> {{ result.transaction_hash }}<br>
+                <strong>Status:</strong> {{ result.status }}<br>
+                <strong>Upload Date:</strong> {{ result.upload_date }}<br>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data found for the provided chassis number.</p>
+    {% endif %}
+</body>
+</html>
