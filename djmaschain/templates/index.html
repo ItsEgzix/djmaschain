@@ -1,30 +1,48 @@
-      <!-- Start Landing Page -->
-      <link rel="stylesheet" type="text/css" href="index.css">
+{% load compress %}
+{% load static %}
 
-      <div class="landing-page">
-        <header>
-          <div class="container">
-            <a href="#" class="logo">Car<b>Tracker</b></a>
-            <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="info.html">Info</a></li>
-                <li><a style="color: white"href="registeration.html">Get Started</a></li>
-            </ul>
-          </div>
-        </header>
-        <div class="content">
-          <div class="container">
-            <div class="info">
-              <h1>Looking For Inspiration</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus odit nihil ullam nesciunt quidem iste, Repellendus odit nihil</p>
-              <button onclick="location.href='registeration.html';">Get Started</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  {% compress css %}
+  <link rel="stylesheet" href="{% static 'src/output.css' %}">
+  
+  {% endcompress %}
+</head>
+<body>
+        <!-- Start Landing Page -->
+        
+
+        <div class="landing-page">
+          <header>
+            <div class="container">
+              <a href="#" class="logo">Car<b>Chain</b></a>
+              <ul class="links">
+                  <li><a href="">Home</a></li>
+                  <li><a href="/fetchdata">Add Car</a></li>
+                  <li><a href="/search">Search for a car</a></li>
+                  <li><a href="/404">Info</a></li>
+                  <li><a style="color: white"href="fetchdata.html">Get Started</a></li>
+              </ul>
             </div>
-            <div class="image">
-              <img src="https://i.postimg.cc/65QxYYzh/001234.png">
+          </header>
+          <div class="content">
+            <div class="container">
+              <div class="info">
+                <h1>Your Car History With Ninja</h1>
+                <p>Welcome to CarTracker! Our platform helps you get your vehicles history with advanced blockchain tracking</p>
+                <button onclick="location.href='/fetchdata';">Get Started</button>
+              </div>
+              <div class="image">
+                <img src="https://i.postimg.cc/52YrJ98M/1-removebg-preview.png">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- End Landing Page -->
+        <!-- End Landing Page -->
+</body>
+</html>

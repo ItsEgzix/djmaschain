@@ -1,70 +1,81 @@
-
+{% load compress %}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Car Data Form</title>
-    <style>
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #007bff;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Fetch Data</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    
+    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="index.css">
+ 
 </head>
+<div class="landing-page">
+<header>
+    <div class="container">
+        <a href="#" class="logo">Car<b>Chain</b></a>
+      <ul class="links">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/fetchdata">Add Car</a></li>
+          <li><a href="/search">Search for a car</a></li>
+          <li><a href="/404">Info</a></li>
+          <li><a style="color: white"href="fetchdata.html">Get Started</a></li>
+      </ul>
+    </div>
+  </header></div>
 <body>
-    <h1>Enter Car Details</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="ChassisNumber">Chassis Number:</label>
-        <input type="text" id="ChassisNumber" name="ChassisNumber" required>
-        <br>
+    <div class="relative flex flex-col max-w-[800px] m-auto my-8 p-8 border border-white/40 rounded-xl bg-blue-500/5">
+        <div class="absolute top-0 -left-32 -z-10 blur-3xl rounded-full w-[300px] aspect-square bg-cyan-300/40"></div>
+        <div class="absolute bottom-0 -right-32 -z-10 blur-3xl rounded-full w-[300px] aspect-square bg-yellow-300/40"></div>
+        <form method="POST" class="flex flex-col [&_label]:text-sm [&_label]:text-gray-700">
+            <h1 class="text-xl pb-4">Enter Car Details</h1>
+            {% csrf_token %}
+            <label for="car_Chasses_Number">Chassis Number:</label>
+            <input type="text" id="car_Chasses_Number" name="car_Chasses_Number" required>
+            <br>
 
-        <label for="Manufacturer">Manufacturer:</label>
-        <input type="text" id="Manufacturer" name="Manufacturer" required>
-        <br>
-
-        <label for="model">Model:</label>
-        <input type="text" id="model" name="model" required>
-        <br>
+            <label for="manfuctureer">Manufacturer:</label>
+            <input type="text" id="manfuctureer" name="manfuctureer" required>
+            <br>
         
-        <label for="Year">Year:</label>
-        <input type="date" id="Year" name="Year" required>
-        <br>
-    
-        <label for="color">Color:</label>
-        <input type="text" id="color" name="color" required>
-        <br>
-        
-        <label for="Distance">Distance:</label>
-        <input type="text" id="Distance" name="Distance" required>
-        <br>
-    
-        <!-- Uncomment this block if you need to upload images -->
-        <!-- 
-        <label for="images">Upload Images:</label>
-        <input type="file" id="images" name="images" multiple>
-        <br>
-        -->
-    
-        <button type="submit">Submit</button>
-    </form>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required>
+            <br>
 
-    {% if data %}
-        <h2>API Response</h2>
-        <pre>{{ data | safe }}</pre>
-    {% endif %}
+            <label for="Year">Year:</label>
+            <input type="text" id="Year" name="Year" required>
+            <br>
+        
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required>
+            <br>
+            
+            <label for="Distance">Distance:</label>
+            <input type="text" id="Distance" name="Distance" required>
+            <br>
+
+            <!-- <label for="time_stamp">Time stamp:</label>
+            <input type="time" id="time_stamp" name="time_stamp" required>
+            <br> -->
+
+            <label for="discription">Discription:</label>
+            <textarea name="discription" id="discription"></textarea>
+            <br>
+
+            <button type="submit" class="btn-primary self-end">Submit</button>
+        </form>
+
+        {% if data %}
+            <h2>API Response</h2>
+            <pre>{{ data.result.metadata | safe }}</pre>
+        {% endif %}
+
+        <!-- Button to go to the search page -->
+        <a href="{% url 'search' %}" class="btn-secondary inline-block self-end mt-4 ">Go to Search</a>
+    </div>
 
 </body>
 </html>

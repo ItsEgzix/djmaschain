@@ -1,36 +1,65 @@
+{% load compress %}
+{% load static %}
+
+
 <!DOCTYPE html>
 <html>
+    
 <head>
     <title>Search Car Details</title>
-</head>
-<body>
-    <h1>Search for Car Details</h1>
-    <form method="POST" action="{% url 'search' %}">
-        {% csrf_token %}
-        <label for="search_chassis_number">Chassis Number:</label>
-        <input type="text" id="search_chassis_number" name="search_chassis_number" required>
-        <button type="submit">Search</button>
-    </form>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="index.css">
 
-    <h1>Search Results</h1>
-    {% if results %}
-        <ul>
-        {% for result in results %}
-            <li>
-                <strong>Chassis Number:</strong> {{ result.metadata.0 }}<br>
-                <strong>Manufacturer:</strong> {{ result.metadata.1 }}<br>
-                <strong>Model:</strong> {{ result.metadata.2 }}<br>
-                <strong>Year:</strong> {{ result.metadata.3 }}<br>
-                <strong>Distance:</strong> {{ result.metadata.4 }}<br>
-                <strong>Color:</strong> {{ result.metadata.5 }}<br>
-                <strong>Transaction Hash:</strong> {{ result.transaction_hash }}<br>
-                <strong>Status:</strong> {{ result.status }}<br>
-                <strong>Upload Date:</strong> {{ result.upload_date }}<br>
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No data found for the provided chassis number.</p>
-    {% endif %}
+</head>
+
+<body>
+    <div class="landing-page">
+        <header>
+          <div class="container">
+            <a href="#" class="logo">Car<b>Chain</b></a>
+            <ul class="links">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/fetchdata">Add Car</a></li>
+                <li><a href="/search">Search for a car</a></li>
+                <li><a href="/404">Info</a></li>
+                <li><a style="color: white"href="fetchdata.html">Get Started</a></li>
+            </ul>
+          </div>
+        </header></div>
+    <div class="relative flex flex-col max-w-[800px] m-auto my-8 p-8 border rounded-xl bg-blue-500/5">
+
+        <h1 class="text-xl pb-4">Search for Car Details</h1>
+        <form method="POST" action="{% url 'search' %}" class="flex flex-col text-gray-700">
+            {% csrf_token %}
+            <label for="search_chassis_number">Chassis Number:</label>
+            <input type="text" id="search_chassis_number" name="search_chassis_number" required>
+            <button type="submit" class="btn-primary self-end mt-4">Search</button>
+        </form>
+    </div>
+
+    <div class="relative text-gray-700 flex flex-col max-w-[800px] m-auto my-8 p-8 border rounded-xl">
+        <h1 class="text-xl pb-4"> Search Results </h1>
+        {% if results %}
+            <ul class="grid grid-cols-3 gap-2">
+            {% for result in results %}
+                <li class="border rounded-lg p-4 text-sm [&_span]:mr-2">
+                    <span>Chassis Number: </span> <strong> {{ result.0 }} </strong><br>
+                    <span>Model: </span> <strong>{{ result.1 }}</strong><br>
+                    <span>Manufacturer:</span> <strong> {{ result.2 }} </strong><br>
+                    <span>Year:</span><strong> {{ result.3 }} </strong><br>
+                    <span>Distance:</span><strong> {{ result.4 }} </strong><br>
+                    <span>color:</span><strong> {{ result.5 }} </strong><br>
+                    <span>Time stamp:</span><strong> {{ result.6 }} </strong><br>
+                    <span>discription:</span><strong> {{ result.7 }} </strong><br>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No data found for the provided chassis number.</p>
+        {% endif %}
+    </div>
+
 </body>
 </html>

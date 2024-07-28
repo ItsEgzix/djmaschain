@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <style>
+        * {
+            font-family: 'PT Sans Caption', sans-serif, Arial, 'Times New Roman';
+        }
+
+        .error-container {
+            margin-top: 10%;
+            position: relative;
+            height: 250px;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .error-digit {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            font-size: 120px;
+            font-weight: bold;
+            position: relative;
+            color: white;
+            background: #07B3F9;
+            border-radius: 50%;
+            display: inline-block;
+            transform: skew(45deg);
+        }
+
+        .error-message {
+            font-size: 32px;
+            color: #A2A2A2;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+
+        .error-clip {
+            display: inline-block;
+            transform: skew(-45deg);
+        }
+
+        .shadow {
+            overflow: hidden;
+        }
+
+        .msg {
+            position: relative;
+            display: block;
+            background: #535353;
+            color: #A2A2A2;
+            border-radius: 50%;
+            font-style: italic;
+            top: -190px;
+            left: 30%;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            font-size: 32px;
+        }
+
+        .triangle {
+            position: absolute;
+            transform: rotate(45deg);
+            top: 70%;
+            right: 0%;
+            border-left: 20px solid #535353;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        @media (max-width: 767px) {
+            .error-container {
+                height: 150px;
+            }
+
+            .error-digit {
+                width: 80px;
+                height: 80px;
+                line-height: 80px;
+                font-size: 52px;
+            }
+
+            .msg {
+                top: -110px;
+                left: 15%;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+            }
+
+            .triangle {
+                right: -3%;
+                border-left: 10px solid #535353;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+            }
+        }
+
+        .ground-color {
+            background: white;
+        }
+
+        .item-bg-color {
+            background: #EAEAEA;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #07B3F9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #005f99;
+        }
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="error-container ground-color text-center">
+        <div class="error-clip"><div class="shadow"><span class="error-digit thirdDigit"></span></div></div>
+        <div class="error-clip"><div class="shadow"><span class="error-digit secondDigit"></span></div></div>
+        <div class="error-clip"><div class="shadow"><span class="error-digit firstDigit"></span></div></div>
+        <div class="msg">OH!<span class="triangle"></span></div>
+        <h2 class="error-message">Sorry! Page not found</h2>
+        <button class="back-button" onclick="goHome()">Go to Home</button>
+    </div>
+
+    <script>
+        function goHome() {
+        window.location.href = "/home";
+    }
+        document.addEventListener("DOMContentLoaded", function() {
+            function randomNum() {
+                return Math.floor(Math.random() * 9) + 1;
+            }
+            
+            var loop1, loop2, loop3, i = 0, time = 30;
+            var selector3 = document.querySelector('.thirdDigit');
+            var selector2 = document.querySelector('.secondDigit');
+            var selector1 = document.querySelector('.firstDigit');
+
+            loop3 = setInterval(function() {
+                if (i > 40) {
+                    clearInterval(loop3);
+                    selector3.textContent = 4;
+                } else {
+                    selector3.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+
+            loop2 = setInterval(function() {
+                if (i > 80) {
+                    clearInterval(loop2);
+                    selector2.textContent = 0;
+                } else {
+                    selector2.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+
+            loop1 = setInterval(function() {
+                if (i > 100) {
+                    clearInterval(loop1);
+                    selector1.textContent = 4;
+                } else {
+                    selector1.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
